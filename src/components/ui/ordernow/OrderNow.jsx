@@ -166,7 +166,7 @@ const OrderNow = () => {
               <p>পণ্য হাতে পেয়ে ডেলিভারি ম্যানকে পেমেন্ট করতে পারবেন।</p>
             </div>
           </div>
-          <button type="submit" className="w-full btn text-white py-2 rounded">
+          <button type="submit" className="w-full btn text-white py-2">
             Place Order Now
           </button>
         </div>
