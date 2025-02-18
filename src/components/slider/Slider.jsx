@@ -34,7 +34,7 @@ const Slider = () => {
             <img
               src={image}
               alt=""
-              className="w-full h-[20vh] md:h-[70vh] 2xl:h-[80vh] object-cover rounded-md"
+              className="w-full h-[25vh] md:h-[70vh] 2xl:h-[80vh] object-cover rounded-md"
             />
           </SwiperSlide>
         ))}
