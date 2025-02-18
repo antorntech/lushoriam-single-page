@@ -4,6 +4,7 @@ import Slider from "./components/slider/Slider";
 import Faq from "./components/ui/faq/Faq";
 import Reviews from "./components/ui/reviews/Reviews";
 import OrderNow from "./components/ui/ordernow/OrderNow";
+import Footer from "./components/shared/Footer";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
           <OrderNow />
         </div>
       </Container>
+      <Footer />
     </>
   );
 }
