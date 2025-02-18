@@ -14,6 +14,8 @@ const OrderNow = () => {
     delivery: "inside",
   });
 
+  const [showModal, setShowModal] = useState(false);
+
   const deliveryCharges = {
     inside: 80,
     outside: 140,
@@ -33,9 +35,18 @@ const OrderNow = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert(
-      `Order placed successfully!\nName: ${formData.name}\nAddress: ${formData.address}\nMobile: ${formData.mobile}\nQuantity: ${quantity}\nTotal Amount: ${totalAmount} TK`
-    );
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+    setFormData({
+      name: "",
+      address: "",
+      mobile: "",
+      delivery: "inside",
+    });
+    setQuantity(1);
   };
 
   return (
@@ -103,7 +114,7 @@ const OrderNow = () => {
                 checked={formData.delivery === "inside"}
                 onChange={handleChange}
               />{" "}
-              ঢাকার ভিতরে: ৳ ৬0.00
+              ঢাকার ভিতরে: ৳ ৮0.00
             </label>
             <label>
               <input
@@ -150,6 +161,7 @@ const OrderNow = () => {
           <p className="text-lg font-semibold my-5">Total: {totalAmount} TK</p>
           <div className="mb-5 p-4 bg-primary/10 rounded">
             <h2>ক্যাশ অন ডেলিভারি</h2>
+
             <div className="my-4 bg-primary/20 p-5">
               <p>পণ্য হাতে পেয়ে ডেলিভারি ম্যানকে পেমেন্ট করতে পারবেন।</p>
             </div>
@@ -159,9 +171,43 @@ const OrderNow = () => {
           </button>
         </div>
       </form>
-      <h2 className="text-xl md:text-2xl font-bold mt-6 md:mt-12 lg:mt-20 text-center text-primary">
-        সরাসরি অর্ডার করতে অথবা ফ্রি কনসাল্টেশন পেতে কল করুনঃ 01608-081907
-      </h2>
+
+      {/* Congratulations Modal */}
+      {showModal && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80 backdrop-blur-sm z-[99999]">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-1/3 h-[40vh] text-center ">
+            <h2 className="text-2xl font-bold text-green-600 mb-4">
+              অভিনন্দন!
+            </h2>
+            <p className="text-lg mb-5">
+              আপনার অর্ডার সফলভাবে সম্পন্ন হয়েছে। 🎉
+            </p>
+            <div className="p-4 border rounded-lg shadow-sm text-left space-y-2">
+              <p>
+                <strong>প্রোডাক্ট:</strong> {productName}
+              </p>
+              <p>
+                <strong>নাম:</strong> {formData.name}
+              </p>
+              <p>
+                <strong>ঠিকানা:</strong> {formData.address}
+              </p>
+              <p>
+                <strong>মোবাইল:</strong> {formData.mobile}
+              </p>
+              <p className="text-xl font-semibold mt-4">
+                মোট পরিমাণ: {totalAmount} TK
+              </p>
+            </div>
+            <button
+              onClick={closeModal}
+              className="mt-5 px-6 py-2 bg-green-600 text-white rounded-md"
+            >
+              ঠিক আছে
+            </button>
+          </div>
+        </div>
+      )}
     </Container>
   );
 };
