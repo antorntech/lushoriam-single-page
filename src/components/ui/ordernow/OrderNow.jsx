@@ -154,14 +154,14 @@ const OrderNow = () => {
               <p>পণ্য হাতে পেয়ে ডেলিভারি ম্যানকে পেমেন্ট করতে পারবেন।</p>
             </div>
           </div>
-          <button
-            type="submit"
-            className="w-full bg-blue-600 text-white py-2 rounded"
-          >
+          <button type="submit" className="w-full btn text-white py-2 rounded">
             Place Order Now
           </button>
         </div>
       </form>
+      <h2 className="text-xl md:text-2xl font-bold mt-6 md:mt-12 lg:mt-20 text-center text-primary">
+        সরাসরি অর্ডার করতে অথবা ফ্রি কনসাল্টেশন পেতে কল করুনঃ 01608-081907
+      </h2>
     </Container>
   );
 };
