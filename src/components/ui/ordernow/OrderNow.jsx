@@ -174,28 +174,28 @@ const OrderNow = () => {
 
       {/* Congratulations Modal */}
       {showModal && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80 backdrop-blur-sm z-[99999]">
-          <div className="bg-white p-6 rounded-lg shadow-lg w-1/3 h-[40vh] text-center ">
-            <h2 className="text-2xl font-bold text-green-600 mb-4">
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80 backdrop-blur-sm z-[99999] p-2">
+          <div className="bg-white p-6 rounded-lg shadow-lg md:w-1/3 h-[45vh] md:h-[40vh] text-center ">
+            <h2 className="text-xl md:text-2xl font-bold text-green-600 mb-4">
               অভিনন্দন!
             </h2>
-            <p className="text-lg mb-5">
+            <p className="text-md md:text-lg mb-5">
               আপনার অর্ডার সফলভাবে সম্পন্ন হয়েছে। 🎉
             </p>
             <div className="p-4 border rounded-lg shadow-sm text-left space-y-2">
-              <p>
+              <p className="text-sm md:text-xl">
                 <strong>প্রোডাক্ট:</strong> {productName}
               </p>
-              <p>
+              <p className="text-sm md:text-xl">
                 <strong>নাম:</strong> {formData.name}
               </p>
-              <p>
+              <p className="text-sm md:text-xl">
                 <strong>ঠিকানা:</strong> {formData.address}
               </p>
-              <p>
+              <p className="text-sm md:text-xl">
                 <strong>মোবাইল:</strong> {formData.mobile}
               </p>
-              <p className="text-xl font-semibold mt-4">
+              <p className="text-lg md:text-xl font-semibold mt-4">
                 মোট পরিমাণ: {totalAmount} TK
               </p>
             </div>
