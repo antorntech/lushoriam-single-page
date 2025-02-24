@@ -108,26 +108,28 @@ const OrderNow = () => {
           </div>
           <div className="mb-4">
             <h3 className="text-lg font-semibold mb-2">ডেলিভারি</h3>
-            <label className="mr-4">
-              <input
-                type="radio"
-                name="delivery"
-                value="inside"
-                checked={formData.delivery === "inside"}
-                onChange={handleChange}
-              />{" "}
-              ঢাকার ভিতরে: ৳ ৮0.00
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="delivery"
-                value="outside"
-                checked={formData.delivery === "outside"}
-                onChange={handleChange}
-              />{" "}
-              ঢাকার বাহিরে: ৳ ১২0.00
-            </label>
+            <div className="flex flex-col md:flex-row md:items-center gap-2">
+              <label className="mr-4">
+                <input
+                  type="radio"
+                  name="delivery"
+                  value="inside"
+                  checked={formData.delivery === "inside"}
+                  onChange={handleChange}
+                />{" "}
+                ঢাকার ভিতরে: ৳ ৮0.00
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  name="delivery"
+                  value="outside"
+                  checked={formData.delivery === "outside"}
+                  onChange={handleChange}
+                />{" "}
+                ঢাকার বাহিরে: ৳ ১২0.00
+              </label>
+            </div>
           </div>
         </div>
 
