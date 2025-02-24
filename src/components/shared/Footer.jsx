@@ -1,6 +1,7 @@
 import React from "react";
 import Container from "./Container";
 import { Link, Location } from "iconsax-react";
+import { NavLink } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -16,22 +17,23 @@ const Footer = () => {
           <div className="text-white">
             <ul className="flex items-center gap-5">
               <li>
-                <a
-                  href=""
+                <NavLink
+                  to="/privacy-policy"
                   className="flex items-center gap-1 text-sm md:text-md hover:text-primary transition-all duration-300"
                 >
                   <Link className="size-4" color="currentColor" />
                   <span>Privacy Policy</span>
-                </a>
+                </NavLink>
               </li>
               <li>
-                <a
+                <NavLink
+                  to="/terms-and-conditions"
                   href=""
                   className="flex items-center gap-1 text-sm md:text-md hover:text-primary transition-all duration-300"
                 >
                   <Link className="size-4" color="currentColor" />
                   <span>Terms & Conditions</span>
-                </a>
+                </NavLink>
               </li>
             </ul>
           </div>
