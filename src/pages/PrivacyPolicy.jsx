@@ -3,7 +3,7 @@ import Container from "../components/shared/Container";
 
 const PrivacyPolicy = () => {
   return (
-    <Container className="h-screen">
+    <Container className="md:h-screen">
       <div className="p-5 max-w-3xl mx-auto">
         <p className="mb-6">
           Welcome to <strong>Lushoriam</strong>. Your privacy is important to
