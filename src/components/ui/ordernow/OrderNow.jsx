@@ -59,8 +59,8 @@ const OrderNow = () => {
         className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 lg:gap-12"
       >
         {/* Customer Information */}
-        <div className="space-y-4">
-          <h3 className="text-md md:text-xl font-semibold mb-4">
+        <div className="space-y-2 md:space-y-4">
+          <h3 className="text-md md:text-xl font-semibold mb-2 md:mb-4">
             কাস্টমার তথ্য
           </h3>
           <div className="space-y-2">
@@ -107,7 +107,9 @@ const OrderNow = () => {
             />
           </div>
           <div className="mb-4">
-            <h3 className="text-lg font-semibold mb-2">ডেলিভারি</h3>
+            <h3 className="text-lg font-semibold mb-2 mt-4 md:mt-0">
+              ডেলিভারি
+            </h3>
             <div className="flex flex-col md:flex-row md:items-center gap-2">
               <label className="mr-4">
                 <input

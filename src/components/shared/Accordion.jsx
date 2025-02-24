@@ -44,7 +44,7 @@ const Accordion = () => {
             className="w-full flex justify-between items-center p-4 text-left font-medium bg-primary/0 hover:bg-primary/10 transition-all duration-300"
             onClick={() => toggleAccordion(index)}
           >
-            <span className="font-bold text-sm lg:text-md">
+            <span className="font-bold text-sm lg:text-lg">
               {item.question}
             </span>
             {openIndex === index ? (
