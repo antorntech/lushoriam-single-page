@@ -60,15 +60,17 @@ const OrderNow = () => {
       >
         {/* Customer Information */}
         <div className="space-y-4">
-          <h3 className="text-lg font-semibold mb-4">কাস্টমার তথ্য</h3>
+          <h3 className="text-md md:text-xl font-semibold mb-4">
+            কাস্টমার তথ্য
+          </h3>
           <div className="space-y-2">
-            <label htmlFor="name">
+            <label htmlFor="name" className="text-sm md:text-md">
               আপনার নাম লিখুন <span className="text-red-500">*</span>
             </label>
             <input
               type="text"
               name="name"
-              placeholder="Your Name"
+              placeholder="নাম..."
               value={formData.name}
               onChange={handleChange}
               required
@@ -76,13 +78,13 @@ const OrderNow = () => {
             />
           </div>
           <div className="space-y-2">
-            <label htmlFor="address">
+            <label htmlFor="address" className="text-sm md:text-md">
               আপনার ঠিকানা লিখুন <span className="text-red-500">*</span>
             </label>
             <input
               type="text"
               name="address"
-              placeholder="Your Address"
+              placeholder="ঠিকানা..."
               value={formData.address}
               onChange={handleChange}
               required
@@ -90,14 +92,14 @@ const OrderNow = () => {
             />
           </div>
           <div className="space-y-2">
-            <label htmlFor="mobile">
+            <label htmlFor="mobile" className="text-sm md:text-md">
               আপনার মোবাইল নাম্বারটি লিখুন{" "}
               <span className="text-red-500">*</span>
             </label>
             <input
               type="tel"
               name="mobile"
-              placeholder="Your Mobile"
+              placeholder="মোবাইল..."
               value={formData.mobile}
               onChange={handleChange}
               required

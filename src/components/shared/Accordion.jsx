@@ -37,7 +37,7 @@ const Accordion = () => {
   };
 
   return (
-    <div className="w-full max-w-2xl mx-auto mt-10">
+    <div className="w-full max-w-2xl mx-auto mt-5 md:mt-10">
       {faqData.map((item, index) => (
         <div key={index} className="border-b border-gray-300">
           <button
