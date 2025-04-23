@@ -12,16 +12,16 @@ const Products = () => {
       <h1 className="text-xl md:text-2xl font-bold text-primary text-center">
         পণ্য সামগ্রী
       </h1>
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-5 md:mt-10">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-5 md:mt-10">
         {products.map((product, index) => (
           <div
             key={index}
-            className="w-full h-[20vh] md:h-[45vh] border border-primary rounded-md p-2 md:p-5"
+            className="w-full h-[28vh] md:h-[45vh] border border-primary rounded-md p-2 md:p-5"
           >
             <img
               src={product}
               alt=""
-              className="w-full h-full object-contain rounded-md"
+              className="w-full h-full object-cover md:object-contain rounded-md"
             />
           </div>
         ))}
