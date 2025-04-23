@@ -1,10 +1,19 @@
 import { useState } from "react";
 import Container from "../../shared/Container";
+import useGetData from "../../../utils/useGetData";
+
+const API_URL = "https://lushoriam-server-abnd.vercel.app";
 
 const OrderNow = () => {
-  const productPrice = 600;
-  const productName = "Printed Sunny Umbrella";
-  const productImage = "/assets/images/product1.jpg";
+  const products = useGetData("products");
+
+  const activeProduct = products?.find(
+    (product) => product.status === "Active"
+  );
+
+  const productPrice = activeProduct?.price;
+  const productName = activeProduct?.title;
+  const productImage = activeProduct?.banner;
 
   const [quantity, setQuantity] = useState(1);
   const [formData, setFormData] = useState({
@@ -15,6 +24,7 @@ const OrderNow = () => {
   });
 
   const [showModal, setShowModal] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const deliveryCharges = {
     inside: 80,
@@ -33,9 +43,44 @@ const OrderNow = () => {
   const totalAmount =
     quantity * productPrice + deliveryCharges[formData.delivery];
 
+  const handleOrder = async () => {
+    setLoading(true);
+    const orderData = {
+      name: formData.name,
+      address: formData.address,
+      mobile: formData.mobile,
+      delivery: formData.delivery,
+      productId: activeProduct._id,
+      productName: productName,
+      productImage: productImage,
+      quantity,
+      price: productPrice,
+      totalAmount: totalAmount,
+      status: "pending",
+    };
+
+    try {
+      const response = await fetch(`${API_URL}/api/v1/orders`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(orderData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Order failed. Please try again.");
+      }
+
+      setShowModal(true);
+    } catch (error) {
+      alert(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    setShowModal(true);
+    handleOrder();
   };
 
   const closeModal = () => {
@@ -52,13 +97,12 @@ const OrderNow = () => {
   return (
     <Container className="w-full my-5 md:my-10 p-5 md:p-10 border border-gray-500 rounded-md">
       <h2 className="text-xl md:text-2xl font-bold mb-6 md:mb-12 text-center">
-        অর্ডার করতে আপনার সঠিক তথ্য দিয়ে নিচের ফর্মটি সম্পূর্ণ পূরন করুন।
+        অর্ডার করতে আপনার সঠিক তথ্য দিয়ে নিচের ফর্মটি পূরণ করুন।
       </h2>
       <form
         onSubmit={handleSubmit}
         className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 lg:gap-12"
       >
-        {/* Customer Information */}
         <div className="space-y-2 md:space-y-4">
           <h3 className="text-md md:text-xl font-semibold mb-2 md:mb-4">
             কাস্টমার তথ্য
@@ -77,6 +121,7 @@ const OrderNow = () => {
               className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:border-primary"
             />
           </div>
+
           <div className="space-y-2">
             <label htmlFor="address" className="text-sm md:text-md">
               আপনার ঠিকানা লিখুন <span className="text-red-500">*</span>
@@ -91,9 +136,10 @@ const OrderNow = () => {
               className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:border-primary"
             />
           </div>
+
           <div className="space-y-2">
             <label htmlFor="mobile" className="text-sm md:text-md">
-              আপনার মোবাইল নাম্বারটি লিখুন{" "}
+              আপনার মোবাইল নাম্বারটি লিখুন
               <span className="text-red-500">*</span>
             </label>
             <input
@@ -111,7 +157,7 @@ const OrderNow = () => {
               ডেলিভারি
             </h3>
             <div className="flex flex-col md:flex-row md:items-center gap-2">
-              <label className="mr-4">
+              <label className="cursor-pointer">
                 <input
                   type="radio"
                   name="delivery"
@@ -121,7 +167,7 @@ const OrderNow = () => {
                 />{" "}
                 ঢাকার ভিতরে: ৳ ৮0.00
               </label>
-              <label>
+              <label className="cursor-pointer">
                 <input
                   type="radio"
                   name="delivery"
@@ -129,13 +175,12 @@ const OrderNow = () => {
                   checked={formData.delivery === "outside"}
                   onChange={handleChange}
                 />{" "}
-                ঢাকার বাহিরে: ৳ ১২0.00
+                ঢাকার বাহিরে: ৳ ১৪0.00
               </label>
             </div>
           </div>
         </div>
 
-        {/* Product Information */}
         <div>
           <div className="flex items-center space-x-4 mb-4">
             <img
@@ -144,7 +189,9 @@ const OrderNow = () => {
               className="w-24 h-24 object-cover rounded"
             />
             <div className="space-y-4">
-              <h3 className="text-lg font-semibold">{productName}</h3>
+              <h3 className="text-lg font-semibold capitalize">
+                {productName}
+              </h3>
               <div className="flex items-center space-x-2 mt-2">
                 <button
                   type="button"
@@ -164,7 +211,24 @@ const OrderNow = () => {
               </div>
             </div>
           </div>
-          <p className="text-lg font-semibold my-5">Total: {totalAmount} TK</p>
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-lg font-semibold my-5">
+                Total: {totalAmount} TK
+              </p>
+            </div>
+            <div className="text-lg font-semibold my-5">
+              {activeProduct?.quantity > 0 ? (
+                <span className="bg-green-500 text-white rounded px-2 py-1">
+                  In stock
+                </span>
+              ) : (
+                <span className="bg-red-500 text-white rounded px-2 py-1">
+                  Out of stock
+                </span>
+              )}
+            </div>
+          </div>
           <div className="mb-5 p-4 bg-primary/10 rounded">
             <h2>ক্যাশ অন ডেলিভারি</h2>
 
@@ -172,16 +236,23 @@ const OrderNow = () => {
               <p>পণ্য হাতে পেয়ে ডেলিভারি ম্যানকে পেমেন্ট করতে পারবেন।</p>
             </div>
           </div>
-          <button type="submit" className="w-full btn text-white py-2">
-            Place Order Now
+          <button
+            type="submit"
+            className="w-full btn text-white py-2"
+            disabled={loading}
+          >
+            {loading ? "Processing..." : "Place Order Now"}
           </button>
         </div>
       </form>
-
-      {/* Congratulations Modal */}
+      <div className="text-center">
+        <h2 className="text-xl md:text-2xl font-bold mt-8 md:mt-14 text-center text-primary">
+          সরাসরি অর্ডার করতে অথবা ফ্রি কনসাল্টেশন পেতে কল করুনঃ 01608-081907
+        </h2>
+      </div>
       {showModal && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80 backdrop-blur-sm z-[99999] p-2">
-          <div className="bg-white p-6 rounded-lg shadow-lg md:w-1/3 h-[45vh] md:h-[40vh] text-center ">
+          <div className="bg-white p-6 rounded-lg shadow-lg md:w-1/2 lg:w-1/3 h-auto text-center">
             <h2 className="text-xl md:text-2xl font-bold text-green-600 mb-4">
               অভিনন্দন!
             </h2>
@@ -189,20 +260,23 @@ const OrderNow = () => {
               আপনার অর্ডার সফলভাবে সম্পন্ন হয়েছে। 🎉
             </p>
             <div className="p-4 border rounded-lg shadow-sm text-left space-y-2">
-              <p className="text-sm md:text-xl">
+              <p className="text-sm md:text-lg">
                 <strong>প্রোডাক্ট:</strong> {productName}
               </p>
-              <p className="text-sm md:text-xl">
+              <p className="text-sm md:text-lg">
                 <strong>নাম:</strong> {formData.name}
               </p>
-              <p className="text-sm md:text-xl">
+              <p className="text-sm md:text-lg">
                 <strong>ঠিকানা:</strong> {formData.address}
               </p>
-              <p className="text-sm md:text-xl">
+              <p className="text-sm md:text-lg">
                 <strong>মোবাইল:</strong> {formData.mobile}
               </p>
-              <p className="text-lg md:text-xl font-semibold mt-4">
-                মোট পরিমাণ: {totalAmount} TK
+              <p className="text-lg md:text-lg font-semibold mt-4">
+                <strong>মোট পরিমাণ:</strong> {quantity} pcs
+              </p>
+              <p className="text-lg md:text-lg font-semibold mt-4">
+                মোট মূল্য: {totalAmount} টাকা
               </p>
             </div>
             <button

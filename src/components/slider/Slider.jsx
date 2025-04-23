@@ -5,14 +5,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Autoplay, Pagination } from "swiper/modules";
+import useGetData from "../../utils/useGetData";
 
 const Slider = () => {
-  const images = [
-    "/assets/images/banners/1.jpg",
-    "/assets/images/banners/2.jpg",
-    "/assets/images/banners/3.jpg",
-    "/assets/images/banners/4.jpg",
-  ];
+  const sliders = useGetData("sliders");
 
   return (
     <>
@@ -29,10 +25,10 @@ const Slider = () => {
           disableOnInteraction: false,
         }}
       >
-        {images.map((image, index) => (
+        {sliders?.map((slider, index) => (
           <SwiperSlide key={index}>
             <img
-              src={image}
+              src={slider?.banner}
               alt=""
               className="w-full h-[25vh] md:h-[70vh] 2xl:h-[80vh] object-cover rounded-md"
             />
