@@ -3,9 +3,9 @@ import Container from "../../shared/Container";
 
 const Products = () => {
   const products = [
-    "/assets/images/products/1.png",
-    "/assets/images/products/2.png",
-    "/assets/images/products/3.png",
+    "/assets/images/products/1.jpg",
+    "/assets/images/products/2.jpg",
+    "/assets/images/products/3.jpg",
   ];
   return (
     <Container className="w-full mt-5 md:mt-10 py-5 md:py-10">
