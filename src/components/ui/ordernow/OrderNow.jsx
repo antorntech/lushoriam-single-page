@@ -122,7 +122,6 @@ const OrderNow = () => {
               onChange={handleChange}
               required
               title="Don't use special characters or numbers"
-              pattern="^[A-Za-z\s]+$"
               className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:border-primary"
             />
           </div>
@@ -156,7 +155,6 @@ const OrderNow = () => {
               onChange={handleChange}
               required
               title="Please enter a valid phone number (01608-088888)"
-              pattern="[0-9]{11}"
               className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:border-primary"
             />
           </div>
