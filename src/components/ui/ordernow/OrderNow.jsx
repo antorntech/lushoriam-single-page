@@ -27,8 +27,8 @@ const OrderNow = () => {
   const [loading, setLoading] = useState(false);
 
   const deliveryCharges = {
-    inside: 80,
-    outside: 140,
+    inside: 0,
+    outside: 0,
   };
 
   const handleChange = (e) => {
@@ -118,6 +118,8 @@ const OrderNow = () => {
               value={formData.name}
               onChange={handleChange}
               required
+              title="Don't use special characters or numbers"
+              pattern="^[A-Za-z\s]+$"
               className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:border-primary"
             />
           </div>
@@ -133,6 +135,7 @@ const OrderNow = () => {
               value={formData.address}
               onChange={handleChange}
               required
+              title="Please enter a valid address"
               className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:border-primary"
             />
           </div>
@@ -149,6 +152,8 @@ const OrderNow = () => {
               value={formData.mobile}
               onChange={handleChange}
               required
+              title="Please enter a valid phone number (01608-088888)"
+              pattern="[0-9]{11}"
               className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:border-primary"
             />
           </div>
@@ -156,7 +161,7 @@ const OrderNow = () => {
             <h3 className="text-lg font-semibold mb-2 mt-4 md:mt-0">
               ডেলিভারি
             </h3>
-            <div className="flex flex-col md:flex-row md:items-center gap-2">
+            <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-6">
               <label className="cursor-pointer">
                 <input
                   type="radio"
@@ -165,7 +170,8 @@ const OrderNow = () => {
                   checked={formData.delivery === "inside"}
                   onChange={handleChange}
                 />{" "}
-                ঢাকার ভিতরে: ৳ ৮0.00
+                ঢাকার ভিতরে: <span className="line-through">৳ ৮0.00</span>{" "}
+                <span className="font-semibold">৳ 00.00</span>
               </label>
               <label className="cursor-pointer">
                 <input
@@ -175,7 +181,8 @@ const OrderNow = () => {
                   checked={formData.delivery === "outside"}
                   onChange={handleChange}
                 />{" "}
-                ঢাকার বাহিরে: ৳ ১৪0.00
+                ঢাকার বাহিরে: <span className="line-through">৳ ১৪0.00</span>
+                <span className="font-semibold">৳ 00.00</span>
               </label>
             </div>
           </div>
@@ -230,10 +237,15 @@ const OrderNow = () => {
             </div>
           </div>
           <div className="mb-5 p-4 bg-primary/10 rounded">
-            <h2>ক্যাশ অন ডেলিভারি</h2>
+            {/* <h2>ক্যাশ অন ডেলিভারি</h2> */}
+            <h2 className="text-xl font-bold text-primary">বিশেষ বিজ্ঞপ্তি</h2>
 
             <div className="my-4 bg-primary/20 p-5">
-              <p>পণ্য হাতে পেয়ে ডেলিভারি ম্যানকে পেমেন্ট করতে পারবেন।</p>
+              {/* <p>পণ্য হাতে পেয়ে ডেলিভারি ম্যানকে পেমেন্ট করতে পারবেন।</p> */}
+              <p>
+                যেহেতু ডেলিভারি চার্জ ফ্রি তাই ডেলিভারি ম্যান হতে শুধুমাত্র
+                প্রোডাক্টের টাকা ছাড়া কোনো প্রকার এক্সট্রা টাকা দিবেন না।
+              </p>
             </div>
           </div>
           <button
