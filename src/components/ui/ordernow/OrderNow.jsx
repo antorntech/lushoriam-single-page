@@ -241,14 +241,14 @@ const OrderNow = () => {
               )}
             </div>
           </div>
-          <div className="mb-5 p-4 bg-primary/10 rounded">
+          <div className="mb-5 p-2 md:p-4 bg-primary/10 rounded">
             {/* <h2>ক্যাশ অন ডেলিভারি</h2> */}
             <h2 className="text-xl font-bold text-primary">বিশেষ বিজ্ঞপ্তি</h2>
 
-            <div className="my-4 bg-primary/20 p-5">
+            <div className="my-2 md:my-4 bg-primary/20 p-2 md:p-5 rounded-md">
               {/* <p>পণ্য হাতে পেয়ে ডেলিভারি ম্যানকে পেমেন্ট করতে পারবেন।</p> */}
               <p>
-                যেহেতু ডেলিভারি চার্জ ফ্রি তাই ডেলিভারি ম্যান হতে শুধুমাত্র
+                যেহেতু ডেলিভারি চার্জ ফ্রি তাই ডেলিভারি ম্যানকে শুধুমাত্র
                 প্রোডাক্টের টাকা ছাড়া কোনো প্রকার এক্সট্রা টাকা দিবেন না।
               </p>
             </div>
