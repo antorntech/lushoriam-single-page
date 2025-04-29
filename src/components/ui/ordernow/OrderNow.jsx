@@ -6,6 +6,7 @@ const API_URL = "https://lushoriam-server-abnd.vercel.app";
 
 const OrderNow = () => {
   const products = useGetData("products");
+  const [orderId, setOrderId] = useState("");
 
   const activeProduct = products?.find(
     (product) => product.status === "Active"
@@ -70,6 +71,9 @@ const OrderNow = () => {
         throw new Error("Order failed. Please try again.");
       }
 
+      const data = await response.json();
+      console.log(data);
+      setOrderId(data?.order?.orderId);
       setShowModal(true);
     } catch (error) {
       alert(error.message);
@@ -291,9 +295,16 @@ const OrderNow = () => {
                 মোট মূল্য: {totalAmount} টাকা
               </p>
             </div>
+            <div className="mt-4">
+              <p className="text-sm md:text-lg italic">
+                নোট: অবশ্যই এই অর্ডার আইডিটি{" "}
+                <span className="font-bold text-green-500 px-1">{orderId}</span>{" "}
+                সংরক্ষণ করে রাখবেন।
+              </p>
+            </div>
             <button
               onClick={closeModal}
-              className="mt-5 px-6 py-2 bg-green-600 text-white rounded-md"
+              className="mt-4 px-6 py-2 bg-green-600 text-white rounded-md"
             >
               ঠিক আছে
             </button>
