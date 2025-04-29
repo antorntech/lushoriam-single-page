@@ -198,7 +198,7 @@ const OrderNow = () => {
               alt={productName}
               className="w-24 h-24 object-cover rounded"
             />
-            <div className="space-y-4">
+            <div className="spayce-y-2 md:space-y-4">
               <h3 className="text-lg font-semibold capitalize">
                 {productName}
               </h3>
