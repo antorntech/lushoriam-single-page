@@ -72,7 +72,6 @@ const OrderNow = () => {
       }
 
       const data = await response.json();
-      console.log(data);
       setOrderId(data?.order?.orderId);
       setShowModal(true);
     } catch (error) {
