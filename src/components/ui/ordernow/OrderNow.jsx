@@ -173,8 +173,9 @@ const OrderNow = () => {
                   checked={formData.delivery === "inside"}
                   onChange={handleChange}
                 />{" "}
-                ঢাকার ভিতরে: <span className="line-through">৳ ৮0.00</span>{" "}
-                <span className="font-semibold">৳ 00.00</span>
+                ঢাকার ভিতরে:{" "}
+                <span className="line-through text-gray-600">৳ ৮0.00</span>{" "}
+                <span className="font-semibold px-2">৳ 00.00</span>
               </label>
               <label className="cursor-pointer">
                 <input
@@ -184,8 +185,9 @@ const OrderNow = () => {
                   checked={formData.delivery === "outside"}
                   onChange={handleChange}
                 />{" "}
-                ঢাকার বাহিরে: <span className="line-through">৳ ১৪0.00</span>
-                <span className="font-semibold">৳ 00.00</span>
+                ঢাকার বাহিরে:{" "}
+                <span className="line-through text-gray-600">৳ ১৪0.00</span>
+                <span className="font-semibold px-2">৳ 00.00</span>
               </label>
             </div>
           </div>
