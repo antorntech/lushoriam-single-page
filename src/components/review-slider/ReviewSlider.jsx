@@ -1,64 +1,63 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import "swiper/css/effect-coverflow";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
 
-import { Autoplay, FreeMode, Pagination } from "swiper/modules";
-import useGetData from "../../utils/useGetData";
+import {
+  Autoplay,
+  FreeMode,
+  Pagination,
+  EffectCoverflow,
+} from "swiper/modules";
 
-const API_URL = "https://lushoriam-server-abnd.vercel.app";
+import useGetData from "../../utils/useGetData";
 
 const ReviewSlider = () => {
   const reviews = useGetData("reviews");
-  console.log(reviews);
+
   return (
-    <>
+    <div className="py-10">
       <Swiper
-        slidesPerView={1}
-        spaceBetween={30}
-        freeMode={true}
-        pagination={{
-          clickable: true,
+        effect="coverflow"
+        grabCursor
+        centeredSlides
+        slidesPerView="auto"
+        initialSlide={Math.floor((reviews?.length || 1) / 2)}
+        coverflowEffect={{
+          rotate: 50,
+          stretch: 0,
+          depth: 100,
+          modifier: 1,
+          slideShadows: true,
         }}
-        breakpoints={{
-          340: {
-            slidesPerView: 1,
-            spaceBetween: 20,
-          },
-          768: {
-            slidesPerView: 2,
-            spaceBetween: 40,
-          },
-          1024: {
-            slidesPerView: 3,
-            spaceBetween: 50,
-          },
-        }}
-        modules={[Autoplay, FreeMode, Pagination]}
+        pagination={{ clickable: true }}
+        modules={[Autoplay, FreeMode, EffectCoverflow, Pagination]}
         className="mySwiper review-slider"
         autoplay={{
           delay: 3000,
           disableOnInteraction: false,
         }}
+        loop
       >
         {reviews?.map((review, index) => (
-          <SwiperSlide key={index}>
-            <div className="flex flex-col items-center gap-2 p-5">
+          <SwiperSlide key={index} className="max-w-xs">
+            <div className="flex flex-col items-center gap-3 p-5 shadow-md rounded-xl bg-white">
               <img
                 src={review?.avatar}
-                alt="avatar"
-                className="w-20 h-20 rounded-full"
+                alt={review?.name || "User Avatar"}
+                className="w-20 h-20 rounded-full object-cover"
               />
               <h2 className="text-lg font-bold">{review?.name}</h2>
-              <p className="text-sm md:text-md text-center text-gray-500">
+              <p className="text-sm md:text-md text-center text-gray-600">
                 {review?.comments}
               </p>
             </div>
           </SwiperSlide>
         ))}
       </Swiper>
-    </>
+    </div>
   );
 };
 
