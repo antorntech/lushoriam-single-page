@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+.swiper-slide-shadow-left,
+.swiper-slide-shadow-right {
+  background: rgba(135, 206, 250, 0.4);
+  filter: blur(5px);
+}
+
 @layer base {
   html {
     @apply scroll-smooth;
