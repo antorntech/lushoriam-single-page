@@ -6,28 +6,14 @@ import Products from "../components/ui/products/Products";
 import Reviews from "../components/ui/reviews/Reviews";
 import OrderNow from "../components/ui/ordernow/OrderNow";
 import Footer from "../components/shared/Footer";
+import Hero from "../components/slider/Hero";
 
 function Home() {
   return (
     <>
       <Container>
-        <Slider />
-        <div className="flex items-center justify-center my-5 lg:my-10">
-          <button
-            className="btn flex items-center gap-1"
-            type="button"
-            onClick={() =>
-              document.getElementById("order-now").scrollIntoView()
-            }
-          >
-            <ShoppingCart
-              className="size-5"
-              variant="Bold"
-              color="currentColor"
-            />
-            এখনই অর্ডার করুন
-          </button>
-        </div>
+        {/* <Slider /> */}
+        <Hero />
         <Faq />
         <Products />
         <Reviews />

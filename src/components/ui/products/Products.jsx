@@ -3,9 +3,9 @@ import Container from "../../shared/Container";
 
 const Products = () => {
   const products = [
-    "/assets/images/products/1.jpg",
-    "/assets/images/products/2.jpg",
-    "/assets/images/products/3.jpg",
+    "/assets/images/products/1.jpeg",
+    "/assets/images/products/2.jpeg",
+    "/assets/images/products/3.jpeg",
   ];
   return (
     <Container className="w-full mt-5 md:mt-10 py-5 md:py-10">
@@ -16,12 +16,12 @@ const Products = () => {
         {products.map((product, index) => (
           <div
             key={index}
-            className="w-full h-[28vh] md:h-[45vh] border border-primary rounded-md p-2 md:p-5"
+            className="w-full h-[55vh] border border-primary rounded-md p-2 md:p-5"
           >
             <img
               src={product}
               alt=""
-              className="w-full h-full object-cover md:object-contain rounded-md"
+              className="w-full h-full object-cover  rounded-md"
             />
           </div>
         ))}
