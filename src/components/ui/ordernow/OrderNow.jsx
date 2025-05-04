@@ -98,7 +98,7 @@ const OrderNow = () => {
   };
 
   return (
-    <Container className="w-full my-5 md:my-10 p-5 md:p-10 border border-gray-500 rounded-md">
+    <Container className="w-full my-5 md:my-20 p-5 md:p-10 border border-gray-500 rounded-md">
       <h2 className="text-xl md:text-2xl font-bold mb-6 md:mb-12 text-center">
         অর্ডার করতে আপনার সঠিক তথ্য দিয়ে নিচের ফর্মটি পূরণ করুন।
       </h2>
