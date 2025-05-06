@@ -10,7 +10,7 @@ function App() {
   const [showOfferModal, setShowOfferModal] = useState(false);
 
   useEffect(() => {
-    setShowOfferModal(true);
+    setShowOfferModal(false);
   }, []);
 
   return (
