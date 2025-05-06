@@ -5,6 +5,7 @@ import AppRoutes from "./routes/AppRoutes";
 import ScrlTopOfPage from "./components/scrlTopOfPage/ScrlTopOfPage";
 import OfferModal from "./components/offermodal/OfferModal";
 import { Call, ShoppingCart } from "iconsax-react";
+import FloatingWhatsappButton from "./components/floatingWhatsappButton/FloatingWhatsappButton";
 
 function App() {
   const [showOfferModal, setShowOfferModal] = useState(false);
@@ -16,6 +17,10 @@ function App() {
   return (
     <>
       <ScrlTopOfPage />
+      <FloatingWhatsappButton
+        phoneNumber="8801795937735"
+        message="Hi! I need help with your product."
+      />
       <header className="max-w-screen-xl px-4 mx-auto bg-white/90 backdrop-blur sticky top-0 h-16 z-[11]">
         <div className="h-full flex justify-between items-center">
           <a href="tel:01608081907" className="hidden lg:inline">
