@@ -18,7 +18,7 @@ const Hero = () => {
               রোলারের কার্যকরী সাপোর্ট — যার প্রমাণ মিলেছে অসংখ্য সন্তুষ্ট
               গ্রাহকের ফিডব্যাকে।
             </p>
-            <a href="#order-now" className="btn primary inline-block">
+            <a href="#order-now" className="btn primary inline-block heartbeat">
               এখনই অর্ডার করুন
             </a>
           </div>
