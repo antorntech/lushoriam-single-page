@@ -253,6 +253,9 @@ const OrderNow = () => {
           </div>
           <button
             type="submit"
+            onClick={() => {
+              fbq("track", "Purchase");
+            }}
             className="w-full btn text-white py-2"
             disabled={loading}
           >
