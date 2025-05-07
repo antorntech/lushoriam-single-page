@@ -22,11 +22,11 @@ function App() {
         message="Hi! I need help with your product."
       />
       <header className="max-w-screen-xl px-4 mx-auto bg-white/90 backdrop-blur sticky top-0 h-16 z-[11]">
-        <div className="h-full flex justify-between items-center">
+        <div className="h-full flex justify-center md:justify-between items-center">
           <a href="tel:01608081907" className="hidden lg:inline">
             <button
               type="button"
-              className="btn primary flex items-center gap-1"
+              className="btn primary flex items-center gap-1 hover:shadow-md"
             >
               <Call color="currentColor" variant="Bold" className="size-5" />
               <span className="whitespace-nowrap">কল করুন</span>
@@ -44,7 +44,7 @@ function App() {
           <div>
             <a
               href="#order-now"
-              className="btn primary flex items-center gap-1"
+              className="btn primary lg:flex items-center gap-1 hidden hover:shadow-md"
             >
               <ShoppingCart
                 color="currentColor"

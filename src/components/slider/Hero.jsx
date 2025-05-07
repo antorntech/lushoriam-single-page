@@ -5,7 +5,7 @@ const Hero = () => {
     <section className="min-h-[calc(100svh-64px)]">
       <div className="min-h-[calc(100svh-64px)] flex items-center justify-center">
         <div className="h-full flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="md:w-1/3 grow">
+          <div className="md:w-1/3 grow flex flex-col items-center md:items-start">
             <h1
               className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4"
               style={{ lineHeight: "1.4" }}
@@ -18,7 +18,10 @@ const Hero = () => {
               রোলারের কার্যকরী সাপোর্ট — যার প্রমাণ মিলেছে অসংখ্য সন্তুষ্ট
               গ্রাহকের ফিডব্যাকে।
             </p>
-            <a href="#order-now" className="btn primary inline-block heartbeat">
+            <a
+              href="#order-now"
+              className="btn primary inline-block heartbeat shadow-md"
+            >
               এখনই অর্ডার করুন
             </a>
           </div>
