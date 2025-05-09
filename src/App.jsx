@@ -21,7 +21,7 @@ function App() {
         phoneNumber="8801608081907"
         message="Hi! I need help with your product."
       />
-      <header className="max-w-screen-xl px-4 mx-auto bg-white/90 backdrop-blur sticky top-0 h-16 z-[11]">
+      <header className="max-w-screen-xl px-4 mx-auto bg-primary/10 backdrop-blur rounded-b-lg sticky top-0 h-16 z-[11]">
         <div className="h-full flex justify-center md:justify-between items-center">
           <a href="tel:01608081907" className="hidden lg:inline">
             <button
