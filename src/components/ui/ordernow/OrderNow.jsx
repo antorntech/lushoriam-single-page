@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Container from "../../shared/Container";
 import useGetData from "../../../utils/useGetData";
 
@@ -7,6 +7,31 @@ const API_URL = "https://lushoriam-server-abnd.vercel.app";
 const OrderNow = () => {
   const products = useGetData("products");
   const [orderId, setOrderId] = useState("");
+  const formRef = useRef(null);
+  const hasFiredPixel = useRef(false);
+
+  useEffect(() => {
+    const handleFocus = () => {
+      if (!hasFiredPixel.current) {
+        if (typeof fbq !== "undefined") {
+          fbq("trackCustom", "FormFocus");
+          console.log('Meta Pixel event "FormFocus" fired!');
+        }
+        hasFiredPixel.current = true;
+      }
+    };
+
+    const formElement = formRef.current;
+    if (formElement) {
+      formElement.addEventListener("focusin", handleFocus);
+    }
+
+    return () => {
+      if (formElement) {
+        formElement.removeEventListener("focusin", handleFocus);
+      }
+    };
+  }, []);
 
   const activeProduct = products?.find(
     (product) => product.status === "Active"
@@ -103,6 +128,7 @@ const OrderNow = () => {
         অর্ডার করতে আপনার সঠিক তথ্য দিয়ে নিচের ফর্মটি পূরণ করুন।
       </h2>
       <form
+        ref={formRef}
         onSubmit={handleSubmit}
         className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 lg:gap-12"
       >
