@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Container from "../../shared/Container";
 import useGetData from "../../../utils/useGetData";
 
