@@ -7,11 +7,23 @@ import OfferModal from "./components/offermodal/OfferModal";
 import { Call, ShoppingCart } from "iconsax-react";
 import FloatingWhatsappButton from "./components/floatingWhatsappButton/FloatingWhatsappButton";
 
+const API_URL = "https://lushoriam-server-abnd.vercel.app";
+
 function App() {
   const [showOfferModal, setShowOfferModal] = useState(false);
 
   useEffect(() => {
     setShowOfferModal(false);
+  }, []);
+
+  useEffect(() => {
+    fetch(`${API_URL}/api/v1/pixel/pageview`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({}),
+    });
   }, []);
 
   return (
