@@ -188,7 +188,10 @@ const OrderNow = () => {
             <h3 className="text-lg font-semibold mb-2 mt-4 md:mt-0">
               ডেলিভারি
             </h3>
-            <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-6">
+            <div className="text-xl md:text-3xl font-bold text-amber-500 py-2 rounded">
+              ডেলিভারি চার্জ সম্পূর্ণ ফ্রি
+            </div>
+            {/* <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-6">
               <label className="cursor-pointer">
                 <input
                   type="radio"
@@ -213,7 +216,7 @@ const OrderNow = () => {
                 <span className="line-through text-gray-600">৳ ১৪0.00</span>
                 <span className="font-semibold px-2">৳ 00.00</span>
               </label>
-            </div>
+            </div> */}
           </div>
         </div>
 
