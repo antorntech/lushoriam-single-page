@@ -124,7 +124,7 @@ const OrderNow = () => {
     };
 
     try {
-      const response = await fetch(`${API_URL}/api/v1/orders`, {
+      const response = await fetch(`http://localhost:8000/api/v1/orders`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(orderData),
@@ -147,7 +147,7 @@ const OrderNow = () => {
           currency: "BDT",
           content_ids: [activeProduct?._id],
           content_type: "product",
-          eventID: `order-${data?.eventId}`, // 🧠 match server-side event
+          eventID: data?.eventId, // 🧠 match server-side event
         });
         console.log('Meta Pixel event "Purchase" fired!', data.eventId);
       }
