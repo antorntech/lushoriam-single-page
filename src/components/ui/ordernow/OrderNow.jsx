@@ -145,9 +145,9 @@ const OrderNow = () => {
         fbq("track", "Purchase", {
           value: Number(totalAmount),
           currency: "BDT",
-          content_ids: [activeProduct._id],
+          content_ids: [activeProduct?._id],
           content_type: "product",
-          eventID: data.eventId, // 🧠 match server-side event
+          eventID: `order-${data?.eventId}`, // 🧠 match server-side event
         });
         console.log('Meta Pixel event "Purchase" fired!', data.eventId);
       }
