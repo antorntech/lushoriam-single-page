@@ -16,16 +16,6 @@ function App() {
     setShowOfferModal(false);
   }, []);
 
-  // useEffect(() => {
-  //   fetch(`${API_URL}/api/v1/pixel/pageview`, {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({}),
-  //   });
-  // }, []);
-
   useEffect(() => {
     const trackPageView = async () => {
       try {
@@ -34,21 +24,27 @@ function App() {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({}),
+          body: JSON.stringify({}), // Optional: send email if available
         });
 
         const data = await res.json();
 
-        // ✅ Optional: Fire fbq() if available and eventId exists
+        // ✅ Browser-side Meta Pixel tracking for deduplication
         if (
           typeof window !== "undefined" &&
-          typeof fbq === "function" &&
+          typeof window.fbq === "function" &&
           data?.eventId
         ) {
-          fbq("track", "PageView", {
-            eventID: data.eventId, // 🔁 Matches the server-side event
+          window.fbq("track", "PageView", {
+            eventID: data.eventId,
           });
-          console.log('Meta Pixel event "PageView" fired!', data.eventId);
+
+          console.log(
+            '✅ Meta Pixel "PageView" fired with eventID:',
+            data.eventId
+          );
+        } else {
+          console.warn("⚠️ Meta Pixel not found or eventId missing.");
         }
       } catch (error) {
         console.error("❌ PageView tracking error:", error);
