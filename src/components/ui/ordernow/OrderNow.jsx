@@ -143,7 +143,7 @@ const OrderNow = () => {
         data?.eventId
       ) {
         fbq("track", "Purchase", {
-          value: totalAmount,
+          value: Number(totalAmount),
           currency: "BDT",
           content_ids: [activeProduct._id],
           content_type: "product",
