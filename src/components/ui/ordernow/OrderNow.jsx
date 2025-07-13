@@ -149,6 +149,7 @@ const OrderNow = () => {
           content_type: "product",
           eventID: data.eventId, // 🧠 match server-side event
         });
+        console.log('Meta Pixel event "Purchase" fired!', data.eventId);
       }
 
       setOrderId(data?.order?.orderId);

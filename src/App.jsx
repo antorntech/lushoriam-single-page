@@ -48,6 +48,7 @@ function App() {
           fbq("track", "PageView", {
             eventID: data.eventId, // 🔁 Matches the server-side event
           });
+          console.log('Meta Pixel event "PageView" fired!', data.eventId);
         }
       } catch (error) {
         console.error("❌ PageView tracking error:", error);
