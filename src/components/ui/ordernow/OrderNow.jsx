@@ -69,8 +69,46 @@ const OrderNow = () => {
   const totalAmount =
     quantity * productPrice + deliveryCharges[formData.delivery];
 
+  // const handleOrder = async () => {
+  //   setLoading(true);
+  //   const orderData = {
+  //     name: formData.name,
+  //     address: formData.address,
+  //     mobile: formData.mobile,
+  //     delivery: formData.delivery,
+  //     productId: activeProduct._id,
+  //     productName: productName,
+  //     productImage: productImage,
+  //     quantity,
+  //     price: productPrice,
+  //     totalAmount: totalAmount,
+  //     status: "pending",
+  //   };
+
+  //   try {
+  //     const response = await fetch(`${API_URL}/api/v1/orders`, {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify(orderData),
+  //     });
+
+  //     if (!response.ok) {
+  //       throw new Error("Order failed. Please try again.");
+  //     }
+
+  //     const data = await response.json();
+  //     setOrderId(data?.order?.orderId);
+  //     setShowModal(true);
+  //   } catch (error) {
+  //     alert(error.message);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
   const handleOrder = async () => {
     setLoading(true);
+
     const orderData = {
       name: formData.name,
       address: formData.address,
@@ -97,6 +135,22 @@ const OrderNow = () => {
       }
 
       const data = await response.json();
+
+      // ✅ Optional: Trigger fbq purchase with eventId (for deduplication)
+      if (
+        typeof window !== "undefined" &&
+        typeof fbq === "function" &&
+        data?.eventId
+      ) {
+        fbq("track", "Purchase", {
+          value: totalAmount,
+          currency: "BDT",
+          content_ids: [activeProduct._id],
+          content_type: "product",
+          eventID: data.eventId, // 🧠 match server-side event
+        });
+      }
+
       setOrderId(data?.order?.orderId);
       setShowModal(true);
     } catch (error) {

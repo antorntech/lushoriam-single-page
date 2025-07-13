@@ -16,14 +16,45 @@ function App() {
     setShowOfferModal(false);
   }, []);
 
+  // useEffect(() => {
+  //   fetch(`${API_URL}/api/v1/pixel/pageview`, {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({}),
+  //   });
+  // }, []);
+
   useEffect(() => {
-    fetch(`${API_URL}/api/v1/pixel/pageview`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({}),
-    });
+    const trackPageView = async () => {
+      try {
+        const res = await fetch(`${API_URL}/api/v1/pixel/pageview`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({}),
+        });
+
+        const data = await res.json();
+
+        // ✅ Optional: Fire fbq() if available and eventId exists
+        if (
+          typeof window !== "undefined" &&
+          typeof fbq === "function" &&
+          data?.eventId
+        ) {
+          fbq("track", "PageView", {
+            eventID: data.eventId, // 🔁 Matches the server-side event
+          });
+        }
+      } catch (error) {
+        console.error("❌ PageView tracking error:", error);
+      }
+    };
+
+    trackPageView();
   }, []);
 
   return (
