@@ -36,6 +36,12 @@ function App() {
           data?.eventId
         ) {
           window.fbq("track", "PageView", {
+            event: "PageView",
+            url: window.location.href,
+            title: document.title,
+            userAgent: navigator.userAgent,
+            currency: "BDT",
+            value: 999,
             eventID: data.eventId,
           });
 
